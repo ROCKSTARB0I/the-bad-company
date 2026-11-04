@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>THE BAD COMPANY</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="ui"></div>
+<div id="boot"><div class="b1">THE BAD COMPANY</div><div class="b2">LOADING ARSENAL…</div></div>
+<script type="module">
+  import { Game } from './src/game.js';
+  const boot = document.getElementById('boot');
+  try {
+    window.GAME = new Game(document.getElementById('c'), document.getElementById('ui'));
+    boot.remove();
+  } catch (err) {
+    boot.innerHTML = '<div class="b1">FAILED TO START</div><div class="b2">' +
+      String(err && err.message || err).replace(/</g, '&lt;') + '</div>';
+    console.error(err);
+  }
+</script>
+</body>
+</html>
